@@ -56,7 +56,7 @@ Thumbs.db
 # Forge build artifacts
 contracts/**/out/                # compiled bytecode, ABIs, etc.
 contracts/**/cache/              # incremental compile/cache files
-contracts/**lib/                # cloned dependencies via `forge install`
+contracts/**/lib/                # cloned dependencies via `forge install`
 
 # Local test node data (if you persist Anvil state)
 contracts/**/.anvil/             # Anvil’s default data directory (if used)
