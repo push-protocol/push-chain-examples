@@ -54,12 +54,12 @@ Thumbs.db
 
 # Foundry
 # Forge build artifacts
-contracts/**/out/                # compiled bytecode, ABIs, etc.
-contracts/**/cache/              # incremental compile/cache files
-contracts/**/lib/                # cloned dependencies via `forge install`
+**/out/
+**/cache/
+**/lib/forge-std/
 
 # Local test node data (if you persist Anvil state)
-contracts/**/.anvil/             # Anvil’s default data directory (if used)
+**/.anvil/
 
 # Coverage & reports
 contracts/**/coverage/           # solidity-coverage output
