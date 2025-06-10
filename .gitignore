@@ -54,12 +54,12 @@ Thumbs.db
 
 # Foundry
 # Forge build artifacts
-**/out/
-**/cache/
-**/lib/forge-std/
+contracts/**/out/
+contracts/**/cache/
+contracts/**/lib/forge-std/
 
 # Local test node data (if you persist Anvil state)
-**/.anvil/
+contracts/**/.anvil/
 
 # Coverage & reports
 contracts/**/coverage/           # solidity-coverage output
