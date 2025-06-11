@@ -13,7 +13,7 @@ async function example() {
   const wallet = ethers.Wallet.createRandom();
 
   // 2. Connect to a provider (e.g., Push Chain RPC URL)
-  const provider = new ethers.JsonRpcProvider('https://evm.pn1.dev.push.org');
+  const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/');
   const signer = wallet.connect(provider);
 
   // 3. Convert ethers signer to Universal Signer
@@ -27,10 +27,10 @@ async function example() {
   });
 
   // Send a universal transaction (from any chain to Push Chain)
-  const txHash = await pushChainClient.universal.sendTransaction({
-    to: '0xD0DE00000447492307108Bdc7Ff6BaB33Ff37Dacc479', // To address on Push Chain
-    value: BigInt(0), // $PC Value to send
-  });
+  // const txHash = await pushChainClient.universal.sendTransaction({
+  //   to: '0xD0DE00000447492307108Bdc7Ff6BaB33Ff37Dacc479', // To address on Push Chain
+  //   value: BigInt(0), // $PC Value to send
+  // });
 
   console.log('Transaction sent:', txHash);
 }
