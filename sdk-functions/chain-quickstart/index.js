@@ -4,16 +4,12 @@ import { PushChain } from '@pushchain/core'
 // Import Ethers for example
 import { ethers } from 'ethers'
 
-// Import Viem for example
-import { hexToBytes } from 'viem'
-import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
-
 async function example() {
   // 1. Create a random wallet (or use your own private key)
   const wallet = ethers.Wallet.createRandom()
 
   // 2. Connect to a provider (e.g., Push Chain RPC URL)
-  const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
+  const provider = new ethers.providers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
   const signer = wallet.connect(provider)
 
   // 3. Convert ethers signer to Universal Signer
