@@ -1,5 +1,5 @@
 {
-  "name": "chain-quickstart",
+  "name": "create-universal-signer",
   "version": "1.0.0",
   "description": "Chain quickstart example for Push Chain",
   "main": "index.js",
@@ -13,7 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "@pushchain/core": "latest",
+    "@solana/web3.js": "1.98.2",
+    "chalk": "5.4.1",
     "ethers": "6.14.3",
+    "js-beautify": "1.15.4",
     "viem": "^2.23.1"
   }
 }
