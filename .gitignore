@@ -58,12 +58,21 @@ contracts/**/out/
 contracts/**/cache/
 contracts/**/lib/forge-std/
 
+tutorials/**/out/
+tutorials/**/cache/
+tutorials/**/lib/forge-std/
+
 # Local test node data (if you persist Anvil state)
 contracts/**/.anvil/
+
+tutorials/**/.anvil/
 
 # Coverage & reports
 contracts/**/coverage/           # solidity-coverage output
 contracts/**/profile/            # any profiling outputs
+
+tutorials/**/coverage/           # solidity-coverage output
+tutorials/**/profile/            # any profiling outputs
 
 # Environment & secrets
 .env                # environment variables (private keys, RPC URLs)
