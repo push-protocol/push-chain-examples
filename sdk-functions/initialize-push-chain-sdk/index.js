@@ -19,7 +19,12 @@ async function ethersV6() {
   // Convert ethers signer to Universal Signer
   const universalSigner = await PushChain.utils.signer.toUniversal(signer)
   console.log('🔑 Got universal signer')
-  console.dir(universalSigner)
+
+  const pushChainClient = await PushChain.initialize(universalSigner, {
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
+  })
+
+  console.log('🔑 Got push chain client')
 }
 
 async function viem() {
@@ -36,7 +41,12 @@ async function viem() {
   // Convert viem wallet client to Universal Signer
   const universalSigner = await PushChain.utils.signer.toUniversal(walletClient)
   console.log('🔑 Got universal signer')
-  console.dir(universalSigner)
+
+  const pushChainClient = await PushChain.initialize(universalSigner, {
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
+  })
+
+  console.log('🔑 Got push chain client')
 }
 
 async function solanaweb3Js() {
@@ -49,7 +59,12 @@ async function solanaweb3Js() {
     library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
   })
   console.log('🔑 Got universal signer')
-  console.dir(universalSigner)
+
+  const pushChainClient = await PushChain.initialize(universalSigner, {
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
+  })
+
+  console.log('🔑 Got push chain client')
 }
 
 async function main() {
