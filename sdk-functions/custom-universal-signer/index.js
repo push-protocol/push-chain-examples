@@ -106,10 +106,10 @@ async function optionalPushChainClientAndSendTx(universalSigner) {
 
   // Wrap in a promise to handle async/await
   await new Promise((resolve) => {
-    rl.question(`Please make sure that this wallet address: ${pushChainClient.universal.account.address} is funded with test tokens for this chain ${pushChainClient.universal.account.chain}\nPress Enter to continue...`, async () => {
+    rl.question(`Please make sure that this wallet address: ${pushChainClient.universal.origin.address} is funded with test tokens for this chain ${pushChainClient.universal.origin.chain}\nPress Enter to continue...`, async () => {
       try {
         // Send Transaction
-        const tx = await pushChain.universal.sendTransaction({
+        const tx = await pushChainClient.universal.sendTransaction({
           to: '0x0000000000000000000000000000000000042101',
           value: BigInt(0),
         });
