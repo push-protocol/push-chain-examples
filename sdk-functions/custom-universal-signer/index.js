@@ -89,7 +89,7 @@ async function main() {
   const pushChain = await PushChain.initialize(universalSigner, {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
-  console.log('(Optional) 5. Initialized Push Chain SDK with custom signer', JSON.stringify(pushChain, null, 2), '\n--\n\n');
+  console.log('(Optional) 5. Initialized Push Chain SDK with custom signer', JSON.stringify(pushChain), '\n--\n\n');
 
   // Send Transaction
   const tx = await pushChain.universal.sendTransaction({
