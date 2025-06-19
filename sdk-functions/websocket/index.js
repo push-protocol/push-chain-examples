@@ -9,7 +9,7 @@ function ethersWebSocket() {
   const provider = new ethers.WebSocketProvider(WEBSOCKET_URL)
 
   // Subscribe to new block events
-  provider.on('block', (blockNumber: any) => {
+  provider.on('block', (blockNumber) => {
     console.log('New block:', blockNumber)
   })
 
