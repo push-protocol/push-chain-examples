@@ -89,7 +89,7 @@ async function main() {
   // ** Optional: Initialize Push Chain Client and Send Transaction **
   await optionalPushChainClientAndSendTx(universalSigner);
 }
-main().catch(console.error);
+await main().catch(console.error);
 
 // ** Optiona: Initialize Push Chain Client and Send Transaction **
 async function optionalPushChainClientAndSendTx(universalSigner) {

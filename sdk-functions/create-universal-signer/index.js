@@ -33,7 +33,7 @@ async function main() {
 
   console.log('------\n');
 }
-main().catch(console.error);
+await main().catch(console.error);
 
 // --- Ethers V6 Usage and Examples ---
 // Create Universal Signer - Ethers V6 - Push Chain Account
