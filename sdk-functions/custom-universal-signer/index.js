@@ -97,10 +97,12 @@ await main().catch(console.error);
 
 // ** Optiona: Initialize Push Chain Client and Send Transaction **
 async function optionalPushChainClientAndSendTx(universalSigner) {
+  // setup for input
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
+
 
   console.log('5️⃣  (Optional) Initializing Push Chain Client with custom signer');
   // ** Initialize Push Chain client **
@@ -110,9 +112,11 @@ async function optionalPushChainClientAndSendTx(universalSigner) {
   // JSON.stringify with BigInt support
   console.log('✅  Push Chain Client Initialized\n', JSON.stringify(pushChainClient, (_, v) => typeof v === 'bigint' ? v.toString() : v), '\n\n\n');
 
+  
   // Wrap in a promise to handle async/await
   await new Promise((resolve) => {
     rl.question(`💰 Please make sure that this wallet address: ${pushChainClient.universal.account.address} is funded with test tokens for this chain ${pushChainClient.universal.account.chain}\n⏎  Press Enter to continue...`, async () => {
+
       try {
         console.log('6️⃣  (Optional) Sending transaction...');
 
@@ -122,6 +126,7 @@ async function optionalPushChainClientAndSendTx(universalSigner) {
           value: BigInt(0),
         });
         console.log('📤 Transaction sent:', tx);
+
       } catch (err) {
         console.error('❌ Error sending transaction:', err);
       } finally {
@@ -129,6 +134,7 @@ async function optionalPushChainClientAndSendTx(universalSigner) {
         resolve();
       }
     });
+    
   });
 }
   
