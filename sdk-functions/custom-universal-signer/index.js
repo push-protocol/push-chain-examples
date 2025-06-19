@@ -5,6 +5,7 @@ import { PushChain } from '@pushchain/core';
 import { ethers } from 'ethers';
 
 // Import input
+import readline from 'readline';
 
 async function main() {
   // ETHERS USAGE
@@ -85,18 +86,42 @@ async function main() {
   const universalSigner = await PushChain.utils.signer.toUniversal(universalSignerSkeleton);
   console.log('4. Created Universal Signer with custom signer', JSON.stringify(universalSigner, null, 2), '\n--\n\n');
 
-  // ** Initialize Push Chain SDK with custom signer **
-  const pushChain = await PushChain.initialize(universalSigner, {
+  // ** Optional: Initialize Push Chain Client and Send Transaction **
+  await optionalPushChainClientAndSendTx(universalSigner);
+}
+main().catch(console.error);
+
+// ** Optiona: Initialize Push Chain Client and Send Transaction **
+async function optionalPushChainClientAndSendTx(universalSigner) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  // ** Initialize Push Chain client **
+  const pushChainClient = await PushChain.initialize(universalSigner, {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
-  console.log('(Optional) 5. Initialized Push Chain SDK with custom signer', JSON.stringify(pushChain), '\n--\n\n');
+  console.log('(Optional) 5. Initialized Push Chain SDK with custom signer', pushChainClient, '\n--\n\n');
 
-  // Send Transaction
-  const tx = await pushChain.universal.sendTransaction({
-    to: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
-    value: BigInt('0'),
+  // Wrap in a promise to handle async/await
+  await new Promise((resolve) => {
+    rl.question(`Please make sure that this wallet address: ${pushChainClient.universal.account.address} is funded with test tokens for this chain ${pushChainClient.universal.account.chain}\nPress Enter to continue...`, async () => {
+      try {
+        // Send Transaction
+        const tx = await pushChain.universal.sendTransaction({
+          to: '0x0000000000000000000000000000000000042101',
+          value: BigInt(0),
+        });
+        console.log('(Optional) 6. Transaction sent:', tx);
+      } catch (err) {
+        console.error('(Optional) 6. Error sending transaction:', err);
+      } finally {
+        rl.close();
+        resolve();
+      }
+    });
   });
-  console.log('Transaction sent:', tx);
-}
 
-main().catch(console.error);
+}
+  
