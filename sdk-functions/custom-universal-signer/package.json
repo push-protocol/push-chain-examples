@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@pushchain/core": "latest",
-    "ethers": "6.14.3"
+    "ethers": "6.14.3",
+    "viem": "^2.31.3"
   }
 }

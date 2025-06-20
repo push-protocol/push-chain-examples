@@ -2,7 +2,8 @@
 import { PushChain } from '@pushchain/core'
 
 // Import if you are using ethers
-import { ethers } from 'ethers'
+import { ethers, hexlify } from 'ethers'
+import { hexToBytes } from 'viem'
 
 // Import input
 import readline from 'readline'
@@ -30,11 +31,12 @@ async function main() {
 
   // 1. account to universal account
   // Create random wallet
-  const wallet = ethers.Wallet.createRandom()
+  const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
+  const wallet = ethers.Wallet.createRandom(provider)
 
   // Convert wallet.address to Universal Account
   const universalAccount = PushChain.utils.account.toUniversal(wallet.address, {
-    chain: PushChain.CONSTANTS.CHAIN.ETHEREUM_SEPOLIA,
+    chain: PushChain.CONSTANTS.CHAIN.PUSH_TESTNET,
   })
   console.log('✅ Created Universal Account:\n', JSON.stringify(universalAccount, null, 2), '\n\n\n')
 
@@ -43,12 +45,10 @@ async function main() {
   // create custom Sign and Send Transaction
   console.log('2️⃣  Creating signing functions for custom signer')
   const customSignAndSendTransaction = async (unsignedTx) => {
-    // Sign the transaction using ethers wallet
-    const signedTx = await wallet.signTransaction(unsignedTx)
-    const sendTx = await wallet.sendTransaction(signedTx)
-
-    // Always a Uint8Array
-    return Uint8Array.from(sendTx)
+    const unsignedHex = hexlify(unsignedTx)
+    const tx = ethers.Transaction.from(unsignedHex)
+    const txResponse = await wallet.sendTransaction(tx)
+    return hexToBytes(txResponse.hash)
   }
   console.log('✅  Created customSignAndSendTransaction function', customSignAndSendTransaction)
 
@@ -75,7 +75,7 @@ async function main() {
 
   console.log('3️⃣  Creating Universal Signer Skeleton with custom signing functions...')
   // * Construct the universal signer skeleton with custom signing functions
-  const universalSignerSkeleton = await PushChain.utils.signer.construct(universalAccount, {
+  const universalSignerSkeleton = PushChain.utils.signer.construct(universalAccount, {
     signAndSendTransaction: customSignAndSendTransaction,
     signMessage: customSignMessage,
     signTypedData: customSignTypedData,
