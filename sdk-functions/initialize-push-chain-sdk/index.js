@@ -25,6 +25,11 @@ async function ethersV6() {
   })
 
   console.log('🔑 Got push chain client')
+
+  console.log('📋 Push Chain Client UEA:')
+  console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
+  console.log('\n📍 Push Chain Client Universal Origin Account:')
+  console.log(JSON.stringify(pushChainClient.universal.origin, null, 2))
 }
 
 async function viem() {
@@ -47,6 +52,11 @@ async function viem() {
   })
 
   console.log('🔑 Got push chain client')
+
+  console.log('📋 Push Chain Client UEA:')
+  console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
+  console.log('\n📍 Push Chain Client Universal Origin Account:')
+  console.log(JSON.stringify(pushChainClient.universal.origin, null, 2))
 }
 
 async function solanaweb3Js() {
@@ -65,6 +75,11 @@ async function solanaweb3Js() {
   })
 
   console.log('🔑 Got push chain client')
+
+  console.log('📋 Push Chain Client UEA:')
+  console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
+  console.log('\n📍 Push Chain Client Universal Origin Account:')
+  console.log(JSON.stringify(pushChainClient.universal.origin, null, 2))
 }
 
 async function main() {
