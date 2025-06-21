@@ -47,8 +47,8 @@ async function main() {
 
 
   console.log("🛠️  Helper Utilities\n\n\n");
-  console.log('\n🏃 Trying to call PushChain.utils.helpers.chainNameFromId');
-  const chainNameFromIdResult = await chainNameFromId();
+  console.log('\n🏃 Trying to call PushChain.utils.helpers.getChainName');
+  const chainNameFromIdResult = await getChainName();
   console.log('✅ Success:', chainNameFromIdResult);
 }
 
@@ -160,9 +160,9 @@ async function listUrls() {
 
 
 // Helper Utilities
-// PushChain.utils.helpers.chainNameFromId(chainId: string)
-async function chainNameFromId() {
+// PushChain.utils.helpers.getChainName(chainNamespace: string)
+async function getChainName() {
   // ETHEREUM_SEPOLIA
-  const chainName = PushChain.utils.helpers.chainNameFromId('eip155:11155111');
+  const chainName = PushChain.utils.helpers.getChainName('eip155:11155111');
   return chainName;
 }
