@@ -1,3 +1,5 @@
+// Full Documentation: https://push.org/docs/chain/build/advanced/custom-universal-signer/
+
 // Import Push Chain Core
 import { PushChain } from '@pushchain/core'
 
@@ -31,12 +33,13 @@ async function main() {
 
   // 1. account to universal account
   // Create random wallet
-  const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
+  const provider = new ethers.JsonRpcProvider('https://sepolia.drpc.org')
   const wallet = ethers.Wallet.createRandom(provider)
 
   // Convert wallet.address to Universal Account
+  // change chain to ETHEREUM_SEPOLIA or SOLANA_DEVNET to see universal transaction
   const universalAccount = PushChain.utils.account.toUniversal(wallet.address, {
-    chain: PushChain.CONSTANTS.CHAIN.PUSH_TESTNET,
+    chain: PushChain.CONSTANTS.CHAIN.ETHEREUM_SEPOLIA,
   })
   console.log('✅ Created Universal Account:\n', JSON.stringify(universalAccount, null, 2), '\n\n\n')
 

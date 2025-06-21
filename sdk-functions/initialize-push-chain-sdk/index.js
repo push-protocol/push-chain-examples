@@ -1,10 +1,10 @@
 // Import Push Chain Core
 import { PushChain } from '@pushchain/core'
-import { ethers } from 'ethers'
-import { privateKeyToAccount, generatePrivateKey } from 'viem/accounts'
-import { createWalletClient, http } from 'viem'
-import { sepolia } from 'viem/chains'
 import { Keypair } from '@solana/web3.js'
+import { ethers } from 'ethers'
+import { createWalletClient, http } from 'viem'
+import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
+import { sepolia } from 'viem/chains'
 
 async function ethersV6() {
   console.log('Creating Universal Signer - Ethers V6')
@@ -64,7 +64,7 @@ async function solanaweb3Js() {
 
   const keyPair = Keypair.generate()
 
-  const universalSigner = await PushChain.utils.signer.toUniversalFromKeyPair(keyPair, {
+  const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(keyPair, {
     chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
     library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
   })

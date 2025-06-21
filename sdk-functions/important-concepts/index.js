@@ -40,7 +40,7 @@ async function toUniversalSigner() {
   // Solana Testnet
   const solKeypair = Keypair.generate();
 
-  const universalSignerFromSol = await PushChain.utils.signer.toUniversalFromKeyPair(solKeypair, {
+  const universalSignerFromSol = await PushChain.utils.signer.toUniversalFromKeypair(solKeypair, {
     chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
     library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
   });

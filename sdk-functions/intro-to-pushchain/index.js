@@ -1,11 +1,11 @@
 // Import Push Chain SDK and Ethers
 // You can use other library like veim, etc
 import { PushChain } from '@pushchain/core'
-import { privateKeyToAccount, generatePrivateKey } from 'viem/accounts'
-import { createWalletClient, http } from 'viem'
-import { sepolia } from 'viem/chains'
-import { ethers } from 'ethers'
 import { Keypair } from '@solana/web3.js'
+import { ethers } from 'ethers'
+import { createWalletClient, http } from 'viem'
+import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
+import { sepolia } from 'viem/chains'
 
 async function ethersV6PushChainInitialize() {
   // 1. Connect to a provider (e.g., Push Chain RPC URL)
@@ -76,9 +76,9 @@ async function solanaInitialize() {
   const solKeypair = Keypair.generate()
 
   // 2. Convert the Solana Keypair into a Push Chain universal signer.
-  //    We use the helper `toUniversalFromKeyPair`, which internally builds
+  //    We use the helper `toUniversalFromKeypair`, which internally builds
   //    the necessary adapter (signTransaction, signMessage).
-  const universalSigner = await PushChain.utils.signer.toUniversalFromKeyPair(solKeypair, {
+  const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(solKeypair, {
     chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
     library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
   })
