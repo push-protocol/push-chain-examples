@@ -24,12 +24,14 @@ async function ethersV6() {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
   })
 
-  console.log('🔑 Got push chain client')
+  // To support loggin big int
+  console.log('🚀 Got push chain client', JSON.stringify(pushChainClient, (_k, v) => typeof v === 'bigint' ? v.toString() : v, 2))
 
-  console.log('📋 Push Chain Client UEA:')
+  console.log('📋 Push Chain Client Universal Executor Account (UEA):')
   console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
-  console.log('\n📍 Push Chain Client Universal Origin Account:')
+  console.log('\n📍 Push Chain Client Universal Origin Account (UOA):')
   console.log(JSON.stringify(pushChainClient.universal.origin, null, 2))
+  console.log('Learn about UEA and UOA here: https://push.org/docs/chain/important-concepts')
 }
 
 async function viem() {
@@ -51,7 +53,7 @@ async function viem() {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
   })
 
-  console.log('🔑 Got push chain client')
+  console.log('🚀 Got push chain client')
 
   console.log('📋 Push Chain Client UEA:')
   console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
@@ -74,7 +76,7 @@ async function solanaweb3Js() {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
   })
 
-  console.log('🔑 Got push chain client')
+  console.log('🚀 Got push chain client')
 
   console.log('📋 Push Chain Client UEA:')
   console.log(JSON.stringify(pushChainClient.universal.account, null, 2))
