@@ -7,7 +7,7 @@ import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
 import { sepolia } from 'viem/chains';
 
 async function main() {
-  console.log("\n\n\n🔑 Account Based APIs");
+  console.log("\n\n\n🔑 Account Utilities");
 
   console.log('\n🏃 Trying to call PushChain.utils.account.convertOriginToExecutor');
   const executorResult = await convertOriginToExecutor();
@@ -30,13 +30,13 @@ async function main() {
   console.log('✅ Success:', JSON.stringify(universalFromKeyPairResult, null, 2));
 
 
-  console.log("\n\n\n📝 Signer Based APIs");
+  console.log("\n\n\n📝 Signer Utilities");
   console.log('\n🏃 Trying to call PushChain.utils.signer.toUniversalSigner');
   const universalSignerResult = await toUniversalSigner();
   console.log('✅ Success:', JSON.stringify(universalSignerResult, null, 2));
 
 
-  console.log("🛠️  Other Helper APIs\n\n\n");
+  console.log("🔍 Explorer Utilities\n\n\n");
   console.log('\n🏃 Trying to call pushChainClient.explorer.getTransactionUrl');
   const transactionUrlResult = await getTransactionUrl();
   console.log('✅ Success:', transactionUrlResult);
@@ -45,6 +45,8 @@ async function main() {
   const listUrlsResult = await listUrls();
   console.log('✅ Success:', listUrlsResult);
 
+
+  console.log("🛠️  Helper Utilities\n\n\n");
   console.log('\n🏃 Trying to call PushChain.utils.helpers.chainNameFromId');
   const chainNameFromIdResult = await chainNameFromId();
   console.log('✅ Success:', chainNameFromIdResult);
@@ -52,7 +54,7 @@ async function main() {
 
 await main().catch(console.error);
 
-// Account Based APIs
+// Account Utilities
 // PushChain.utils.account.convertOriginToExecutor(account: string, { chain: string })
 async function convertOriginToExecutor() {
   const account = PushChain.utils.account.toUniversal('0xD8d6aF611a17C236b13235B5318508FA61dE3Dba', {
@@ -96,7 +98,7 @@ function fromChainAgnostic() {
 }
 
 
-// Signer Based APIs
+// Signer Utilities
 // PushChain.utils.signer.toUniversalFromKeypair(signer: Signer, { chain: string })
 async function toUniversalFromKeypair() {
   // ethers
@@ -123,7 +125,7 @@ async function toUniversalFromKeypair() {
 }
 
 
-// Other Helpers APIs
+// Explorer Utilities
 // pushChainClient.explorer.getTransactionUrl(txHash: string)
 async function getTransactionUrl() {
   // ethers
@@ -155,7 +157,9 @@ async function listUrls() {
   const explorerUrls = pushChainClient.explorer.listUrls();
   return explorerUrls;
 }
-  
+
+
+// Helper Utilities
 // PushChain.utils.helpers.chainNameFromId(chainId: string)
 async function chainNameFromId() {
   // ETHEREUM_SEPOLIA
