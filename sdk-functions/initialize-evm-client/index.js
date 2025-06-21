@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-import { http, defineChain, createPublicClient } from 'viem'
+import { createPublicClient, defineChain, http } from 'viem'
 
 async function ethersV6Initialize() {
   const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
@@ -7,7 +7,7 @@ async function ethersV6Initialize() {
 }
 
 async function ethersV6GetTransactionByHash() {
-  const transactionHash = '0x95b8600bd48154e22e513219c139a370e3cab4d1191d6d33ca8d74f72788154c'
+  const transactionHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e'
   const provider = await ethersV6Initialize()
   const transaction = await provider.getTransaction(transactionHash)
   console.log(transaction)
@@ -46,7 +46,7 @@ async function viemInitialize() {
 }
 
 async function viemGetTransactionByHash() {
-  const transactionHash = '0x95b8600bd48154e22e513219c139a370e3cab4d1191d6d33ca8d74f72788154c'
+  const transactionHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e'
   const publicClient = await viemInitialize()
   const transaction = await publicClient.getTransaction({
     hash: transactionHash,

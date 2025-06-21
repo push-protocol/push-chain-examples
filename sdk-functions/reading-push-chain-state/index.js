@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-import { createPublicClient, http, defineChain } from 'viem'
+import { createPublicClient, defineChain, http } from 'viem'
 
 // Define Push Testnet chain configuration
 const pushTestnet = defineChain({
@@ -39,7 +39,7 @@ function replacer(key, value) {
 }
 
 async function getTransactionByHash() {
-  const transactionHash = '0x95b8600bd48154e22e513219c139a370e3cab4d1191d6d33ca8d74f72788154c'
+  const transactionHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e'
 
   // Get transaction using ethers
   const ethersTransaction = await provider.getTransaction(transactionHash)
@@ -63,7 +63,7 @@ async function getLatestBlock() {
 }
 
 async function getBlockByHash() {
-  const blockHash = '0xccdb5bc5b71ece5a73aa42d5d3171b156f1c0735ac97a07ccec3156b59ac936c'
+  const blockHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e'
 
   // Get block using ethers
   const ethersBlock = await provider.getBlock(blockHash)
