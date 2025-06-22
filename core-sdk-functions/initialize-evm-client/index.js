@@ -1,3 +1,5 @@
+// Full Documentation: https://push.org/docs/chain/build/initialize-evm-client
+
 // Import if you are using ethers
 import { ethers } from 'ethers';
 

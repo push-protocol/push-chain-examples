@@ -1,3 +1,5 @@
+// Full Documentation: https://push.org/docs/chain/build/create-universal-signer/
+
 // Import Push Chain Core
 import { PushChain } from '@pushchain/core';
 

@@ -1,3 +1,5 @@
+// Full Documentation: https://push.org/docs/chain/build/initialize-push-chain-client
+
 // Import Push Chain Core
 import { PushChain } from '@pushchain/core';
 import { Keypair } from '@solana/web3.js';
