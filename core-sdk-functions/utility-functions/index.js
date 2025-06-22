@@ -6,6 +6,7 @@ import { createWalletClient, http } from 'viem';
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
 import { sepolia } from 'viem/chains';
 
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   console.log("\n\n\n🔑 Account Utilities");
 

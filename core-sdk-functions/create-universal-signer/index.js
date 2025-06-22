@@ -14,6 +14,7 @@ import { sepolia } from 'viem/chains';
 // Import if you are using solana web3 js
 import { Keypair } from '@solana/web3.js';
 
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   console.log('\n⚡ Ethers v6 Examples');
   console.log('\n1. Push Chain Account');

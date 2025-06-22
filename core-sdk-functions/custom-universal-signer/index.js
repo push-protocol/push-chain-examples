@@ -10,6 +10,7 @@ import { hexToBytes } from 'viem'
 // Import input
 import readline from 'readline'
 
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   // ETHERS USAGE
   console.log("🚀 Let's create custom universal signer")

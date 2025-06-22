@@ -1,25 +1,7 @@
 // Full Documentation: https://push.org/docs/chain/build/reading-blockchain-state
 
-import { ethers } from 'ethers'
-import { createPublicClient, defineChain, http, webSocket } from 'viem'
-
-// MAIN FUNCTION
-async function main() {
-  console.log('🚀 Starting Push Chain state reading examples...')
-  try {
-    console.log('\n🔍 Running examples with both ethers.js and viem...')
-    // Run all examples
-    await getTransactionByHash()
-    await getLatestBlock()
-    await getBlockByHash()
-    await watchBlocks()
-  } catch (error) {
-    console.error('❌ Error:', error)
-    if (error.message?.includes('WebSocket')) {
-      console.log('ℹ️ Note: Make sure the WebSocket endpoint is available and accessible')
-    }
-  }
-}
+import { ethers } from 'ethers';
+import { createPublicClient, defineChain, http, webSocket } from 'viem';
 
 // Define Push Testnet chain configuration for Viem
 const pushTestnet = defineChain({
@@ -57,9 +39,6 @@ wsProvider.websocket.onopen = () => {
   console.log('🟢 WebSocket connected')
 }
 
-// Run main
-await main().catch(console.error)
-
 // Custom replacer function to handle BigInt serialization
 function replacer(key, value) {
   if (typeof value === 'bigint') {
@@ -67,6 +46,26 @@ function replacer(key, value) {
   }
   return value
 }
+
+// ⭐️ MAIN FUNCTION ⭐️
+async function main() {
+  console.log('🚀 Starting Push Chain state reading examples...')
+  try {
+    console.log('\n🔍 Running examples with both ethers.js and viem...')
+    // Run all examples
+    await getTransactionByHash()
+    await getLatestBlock()
+    await getBlockByHash()
+    await watchBlocks()
+  } catch (error) {
+    console.error('❌ Error:', error)
+    if (error.message?.includes('WebSocket')) {
+      console.log('ℹ️ Note: Make sure the WebSocket endpoint is available and accessible')
+    }
+  }
+}
+
+await main().catch(console.error)
 
 // 1. Fetch transaction by hash
 async function getTransactionByHash() {

@@ -6,6 +6,7 @@ import { ethers } from 'ethers';
 // Import if you are using viem
 import { createPublicClient, defineChain, http } from 'viem';
 
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   console.log('\n⚡ Ethers Examples');
   console.log('\n1. Initialize Provider');

@@ -4,6 +4,7 @@ import { PushChain } from '@pushchain/core'
 // Import Ethers for example
 import { ethers } from 'ethers'
 
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   console.log('Creating Universal Signer - Ethers V6')
 

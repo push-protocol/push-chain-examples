@@ -1,7 +1,6 @@
 // Full Documentation: https://push.org/docs/chain/build/contract-helpers
 
 // Import Push Chain Core
-import { PushChain } from '@pushchain/core';
 import { base58 } from '@scure/base';
 import { ethers } from 'ethers';
 
@@ -22,7 +21,7 @@ function solanaAddressToBytes(address) {
   return base58.decode(address);
 }
 
-// MAIN FUNCTION
+// ⭐️ MAIN FUNCTION ⭐️
 async function main() {
   console.log('\n⚡ Ethers Examples');
   console.log('\n1. Get Origin for UEA');
