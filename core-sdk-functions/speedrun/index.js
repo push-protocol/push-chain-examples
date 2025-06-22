@@ -1,3 +1,5 @@
+// Full Documentation: https://push.org/docs/chain/build/recommended-practices/#speed-run
+
 // Import Push Chain
 import { PushChain } from '@pushchain/core'
 
