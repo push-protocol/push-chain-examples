@@ -2,6 +2,8 @@
 
 Create a Universal Signer to wrap any EVM or non-EVM signer (ethers, viem, Solana, etc.) into a chain-agnostic UniversalSigner object, so you can send cross-chain transactions via Push Chain without changing your on-chain code.
 
+- [Push Chain Documentation](https://push.org/docs/chain)
+
 ## 🚀 Quick Start
 
 ```bash
@@ -39,7 +41,6 @@ The example shows how to:
 ## 🔗 Documentation
 
 For more details, check out:
-- [Push Chain Documentation](https://push.org/docs/chain)
 - [ethers.js Documentation](https://docs.ethers.org/v6/)
 - [viem Documentation](https://viem.sh)
 - [Solana web3.js Documentation](https://solana-labs.github.io/solana-web3.js)[Full Documentation - Create Universal Signer](https://push.org/docs/chain/build/create-universal-signer)
