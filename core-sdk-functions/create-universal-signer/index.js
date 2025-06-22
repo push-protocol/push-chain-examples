@@ -13,25 +13,22 @@ import { sepolia } from 'viem/chains';
 import { Keypair } from '@solana/web3.js';
 
 async function main() {
-  // ETHERS USAGE
-  console.log('⚡ ETHERS USAGE\n------\n🔐 Creating Universal Signer - Ethers V6 - Push Chain Account');
+  console.log('\n⚡ Ethers v6 Examples');
+  console.log('\n1. Push Chain Account');
   await createUniversalSigner_EthersV6_PushChain();
 
-  console.log('------\n🔐 Creating Universal Signer - Ethers V6 - Ethereum Sepolia Account');
+  console.log('\n2. Ethereum Account');
   await createUniversalSigner_EthersV6_Ethereum();
   
-  // VIEM USAGE
-  console.log('------\n\n🌟 VIEM USAGE\n------\n🔐 Creating Universal Signer - Ethers V6 - Push Chain Account');
+  console.log('\n🌟 Viem Examples');
+  console.log('\n1. Push Chain Account');
   await createUniversalSigner_Viem_PushChain();
 
-  console.log('------\n🔐 Creating Universal Signer - Viem - Ethereum Sepolia Account');
+  console.log('\n2. Ethereum Account');
   await createUniversalSigner_Viem_Ethereum();
 
-  // SOLANA WEB3 JS USAGE
-  console.log('------\n\n☀️ WEB3 JS Solana USAGE\n------');
+  console.log('\n☀️ Solana Examples');
   await createUniversalSigner_Web3JSSolana();
-
-  console.log('------\n');
 }
 await main().catch(console.error);
 

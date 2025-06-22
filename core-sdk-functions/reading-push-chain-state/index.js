@@ -38,6 +38,27 @@ function replacer(key, value) {
   return value
 }
 
+
+async function main() {
+  console.log('\nFetching transaction by hash...')
+  const transactionResult = await getTransactionByHash()
+  console.log('Ethers transaction:', JSON.stringify(transactionResult.ethersTransaction, replacer, 2))
+  console.log('Viem transaction:', JSON.stringify(transactionResult.viemTransaction, replacer, 2))
+
+  console.log('\nFetching latest block...')
+  const latestBlockResult = await getLatestBlock()
+  console.log('Ethers latest block:', JSON.stringify(latestBlockResult.ethersBlock, replacer, 2))
+  console.log('Viem latest block:', JSON.stringify(latestBlockResult.viemBlock, replacer, 2))
+
+  console.log('\nFetching block by hash...')
+  const blockByHashResult = await getBlockByHash()
+  console.log('Ethers block by hash:', JSON.stringify(blockByHashResult.ethersBlock, replacer, 2))
+  console.log('Viem block by hash:', JSON.stringify(blockByHashResult.viemBlock, replacer, 2))
+}
+
+await main().catch(console.error)
+
+
 async function getTransactionByHash() {
   const transactionHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e'
 
@@ -76,21 +97,3 @@ async function getBlockByHash() {
   return { ethersBlock, viemBlock }
 }
 
-async function main() {
-  console.log('\nFetching transaction by hash...')
-  const transactionResult = await getTransactionByHash()
-  console.log('Ethers transaction:', JSON.stringify(transactionResult.ethersTransaction, replacer, 2))
-  console.log('Viem transaction:', JSON.stringify(transactionResult.viemTransaction, replacer, 2))
-
-  console.log('\nFetching latest block...')
-  const latestBlockResult = await getLatestBlock()
-  console.log('Ethers latest block:', JSON.stringify(latestBlockResult.ethersBlock, replacer, 2))
-  console.log('Viem latest block:', JSON.stringify(latestBlockResult.viemBlock, replacer, 2))
-
-  console.log('\nFetching block by hash...')
-  const blockByHashResult = await getBlockByHash()
-  console.log('Ethers block by hash:', JSON.stringify(blockByHashResult.ethersBlock, replacer, 2))
-  console.log('Viem block by hash:', JSON.stringify(blockByHashResult.viemBlock, replacer, 2))
-}
-
-main().catch(console.error)
