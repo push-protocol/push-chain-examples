@@ -4,7 +4,7 @@
 import { PushChain } from '@pushchain/core'
 
 // Import if you are using ethers
-import { ethers, hexlify } from 'ethers'
+import { ethers, hexlify, getBytes } from 'ethers'
 import { hexToBytes } from 'viem'
 
 // Import input
@@ -67,12 +67,9 @@ async function main() {
   console.log('✅  Created customSignMessage function', customSignMessage)
 
   // 2.3 signMessage
-  const customSignTypedData = async (domain, types, value) => {
-    // Sign typed data using ethers wallet
-    const signature = await wallet._signTypedData(domain, types, value)
-
-    // Always a Uint8Array
-    return Uint8Array.from(signature)
+  const customSignTypedData = async ({ domain, types, primaryType, message }) => {
+    const sigHex = await wallet.signTypedData(domain, types, message)
+    return getBytes(sigHex)
   }
   // This is optional as solana doesn't support sign typed data
   console.log('✅  Created customSignTypedData function', customSignTypedData, '\n\n\n')
@@ -130,7 +127,7 @@ async function optionalPushChainClientAndSendTx(universalSigner) {
 
           // Send Transaction
           const tx = await pushChainClient.universal.sendTransaction({
-            target: '0x0000000000000000000000000000000000042101',
+            to: '0x0000000000000000000000000000000000042101',
             value: BigInt(1),
           })
           console.log('📤 Transaction sent:', tx)
