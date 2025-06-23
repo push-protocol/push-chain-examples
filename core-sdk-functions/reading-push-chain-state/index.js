@@ -1,7 +1,7 @@
 // Full Documentation: https://push.org/docs/chain/build/reading-blockchain-state
 
-import { ethers } from 'ethers';
-import { createPublicClient, defineChain, http, webSocket } from 'viem';
+import { ethers } from 'ethers'
+import { createPublicClient, defineChain, http, webSocket } from 'viem'
 
 // Define Push Testnet chain configuration for Viem
 const pushTestnet = defineChain({
@@ -10,7 +10,7 @@ const pushTestnet = defineChain({
       http: ['https://evm.rpc-testnet-donut-node1.push.org/'],
     },
   },
-});
+})
 
 // Initialize HTTP clients for Ethers
 const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/')
@@ -119,7 +119,7 @@ async function watchBlocks() {
     const block = await wsProvider.getBlock(blockNumber, true)
     if (block && block.transactions) {
       console.log('🆕 New block:', block.number)
-      const txs = await Promise.all(block.transactions.map(hash => wsProvider.getTransaction(hash)))
+      const txs = await Promise.all(block.transactions.map((hash) => wsProvider.getTransaction(hash)))
       txs
         .filter((tx) => tx.to?.toLowerCase() === watchedAddress)
         .forEach((tx) => console.log('💸 Transaction detected:', tx.hash))
@@ -149,6 +149,3 @@ async function watchBlocks() {
     unwatch()
   }, 30000)
 }
-
-
-
