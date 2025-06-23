@@ -27,11 +27,11 @@ async function main() {
   console.log('\n⚡ Ethers v6 Examples - PUSH Chain');
   await ethersV6();
 
-  // console.log('\n🌟 Viem Examples - PUSH Chain');
-  // await viemExample();
+  console.log('\n🌟 Viem Examples - PUSH Chain');
+  await viemExample();
 
-  // console.log('\n🌞 Solana Examples - SOL Chain');
-  // await solanaExample();
+  console.log('\n🌞 Solana Examples - SOL Chain');
+  await solanaExample();
 }
 
 // Run main

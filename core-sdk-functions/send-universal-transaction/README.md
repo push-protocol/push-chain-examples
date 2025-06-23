@@ -49,7 +49,7 @@ const universalSigner = await PushChain.utils.signer.toUniversal(client);
 // Send transaction
 const txResponse = await pushChainClient.universal.sendTransaction({
   to: '0x0000000000000000000000000000000000042101',
-  value: BigInt(1000000000000000), // 0.001 ETH in wei
+  value: BigInt(1000000000000000), // 0.001 $PC
 });
 ```
 
@@ -67,7 +67,7 @@ const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(keyp
 // Send transaction
 const txResponse = await pushChainClient.universal.sendTransaction({
   to: '0x0000000000000000000000000000000000042101',
-  value: BigInt(1000000000000), // 0.001 PC
+  value: BigInt(1000000000000), // 0.001 $PC
 });
 ```
 
