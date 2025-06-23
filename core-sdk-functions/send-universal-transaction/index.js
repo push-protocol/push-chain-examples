@@ -85,7 +85,7 @@ async function ethersV6() {
       console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
       console.log('1️⃣  You sent SEPOLIA ETH to our Universal Gateway on Sepolia');
       console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-      console.log('3️⃣  Push Chain Validators confirmed the locked funds and deployed Universal Executor Account controlled by your Sepolia wallet');
+      console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Sepolia wallet');
       console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
       console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
     }
@@ -155,7 +155,7 @@ async function viemExample() {
       console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
       console.log('1️⃣  You sent SEPOLIA ETH to our Universal Gateway on Sepolia');
       console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-      console.log('3️⃣  Push Chain Validators confirmed the locked funds and deployed Universal Executor Account controlled by your Sepolia wallet');
+      console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Sepolia wallet');
       console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
       console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
     }
@@ -211,7 +211,7 @@ async function solanaExample() {
     console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
     console.log('1️⃣  You sent DEVNET SOLANA to our Universal Gateway on Solana Devnet');
     console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-    console.log('3️⃣  Push Chain Validators confirmed the locked funds and deployed Universal Executor Account controlled by your Sepolia wallet');
+    console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Solana wallet');
     console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
     console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
   } catch (error) {
