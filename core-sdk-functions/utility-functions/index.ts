@@ -8,12 +8,12 @@ import { sepolia } from 'viem/chains';
 
 // ⭐️ MAIN FUNCTION ⭐️
 async function main() {
-  console.log("\n\n\n🔑 Account Utilities");
+  console.log('\n\n\n🔑 Account Utilities');
 
   console.log('\n🏃 Trying to call PushChain.utils.account.convertOriginToExecutor');
   const executorResult = await convertOriginToExecutor();
   console.log('✅ Success:', JSON.stringify(executorResult, null, 2));
-  
+
   console.log('\n🏃 Trying to call toChainAgnostic');
   const chainAgnosticResult = toChainAgnostic();
   console.log('✅ Success:', chainAgnosticResult);
@@ -30,14 +30,7 @@ async function main() {
   const universalFromKeyPairResult = await toUniversalFromKeypair();
   console.log('✅ Success:', JSON.stringify(universalFromKeyPairResult, null, 2));
 
-
-  console.log("\n\n\n📝 Signer Utilities");
-  console.log('\n🏃 Trying to call PushChain.utils.signer.toUniversalSigner');
-  const universalSignerResult = await toUniversalSigner();
-  console.log('✅ Success:', JSON.stringify(universalSignerResult, null, 2));
-
-
-  console.log("🔍 Explorer Utilities\n\n\n");
+  console.log('🔍 Explorer Utilities\n\n\n');
   console.log('\n🏃 Trying to call pushChainClient.explorer.getTransactionUrl');
   const transactionUrlResult = await getTransactionUrl();
   console.log('✅ Success:', transactionUrlResult);
@@ -46,14 +39,13 @@ async function main() {
   const listUrlsResult = await listUrls();
   console.log('✅ Success:', listUrlsResult);
 
-
-  console.log("🛠️  Helper Utilities\n\n\n");
+  console.log('🛠️  Helper Utilities\n\n\n');
   console.log('\n🏃 Trying to call PushChain.utils.helpers.getChainName');
   const chainNameFromIdResult = await getChainName();
   console.log('✅ Success:', chainNameFromIdResult);
 }
 
-await main().catch(console.error);
+main().catch(console.error);
 
 // Account Utilities
 // PushChain.utils.account.convertOriginToExecutor(account: string, { chain: string })
@@ -89,7 +81,6 @@ function toChainAgnostic() {
   return chainAgnosticAddress;
 }
 
-
 // PushChain.utils.account.fromChainAgnostic(address: string)
 function fromChainAgnostic() {
   const account = PushChain.utils.account.fromChainAgnostic(
@@ -97,7 +88,6 @@ function fromChainAgnostic() {
   );
   return account;
 }
-
 
 // Signer Utilities
 // PushChain.utils.signer.toUniversalFromKeypair(signer: Signer, { chain: string })
@@ -118,13 +108,9 @@ async function toUniversalFromKeypair() {
     chain: sepolia,
     transport: http(),
   });
-  const viemSigner = await PushChain.utils.signer.toUniversalFromKeypair(walletClient, {
-    chain: PushChain.CONSTANTS.CHAIN.ETHEREUM_SEPOLIA,
-    library: PushChain.CONSTANTS.LIBRARY.ETHEREUM_VIEM,
-  });
+  const viemSigner = await PushChain.utils.signer.toUniversal(walletClient);
   return { universalSignerEthers, viemSigner };
 }
-
 
 // Explorer Utilities
 // pushChainClient.explorer.getTransactionUrl(txHash: string)
@@ -134,8 +120,8 @@ async function getTransactionUrl() {
   const wallet = new ethers.Wallet(ethers.Wallet.createRandom().privateKey, provider);
 
   const universalSigner = await PushChain.utils.signer.toUniversal(wallet.connect(provider));
-  
-  const pushChainClient = await PushChain.initialize(wallet, {
+
+  const pushChainClient = await PushChain.initialize(universalSigner, {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
   const txHash = '0x4627fd2eca321d5fd007995c94af636e5e332760f50fbd8e3426ad0c67543dad';
@@ -150,15 +136,14 @@ async function listUrls() {
   const wallet = new ethers.Wallet(ethers.Wallet.createRandom().privateKey, provider);
 
   const universalSigner = await PushChain.utils.signer.toUniversal(wallet.connect(provider));
-  
-  const pushChainClient = await PushChain.initialize(wallet, {
+
+  const pushChainClient = await PushChain.initialize(universalSigner, {
     network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
 
   const explorerUrls = pushChainClient.explorer.listUrls();
   return explorerUrls;
 }
-
 
 // Helper Utilities
 // PushChain.utils.helpers.getChainName(chainNamespace: string)
