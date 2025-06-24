@@ -7,7 +7,7 @@ import { PushChain } from '@pushchain/core';
 import { ethers } from 'ethers';
 
 // Import Solana web3
-import { Connection, Keypair } from '@solana/web3.js';
+import { Keypair } from '@solana/web3.js';
 
 // Import viem
 import { createWalletClient, defineChain, http } from 'viem';
@@ -24,18 +24,57 @@ const rl = readline.createInterface({
 
 // ⭐️ MAIN FUNCTION ⭐️
 async function main() {
-  console.log('\n⚡ Ethers v6 Examples - PUSH Chain');
+  console.log('\n🏃‍♂️ Quickstart Example');
+  await quickstartExample();
+
+  console.log('\n⚡ Ethers v6 Example - PUSH Chain');
   await ethersV6();
 
-  console.log('\n🌟 Viem Examples - PUSH Chain');
+  console.log('\n🌟 Viem Example - PUSH Chain');
   await viemExample();
 
-  console.log('\n🌞 Solana Examples - SOL Chain');
+  console.log('\n🌞 Solana Example - SOL Chain');
   await solanaExample();
 }
 
 // Run main
 await main().catch(console.error);
+
+// --- Quickstart Example ---
+// --------------------------
+async function quickstartExample() {
+  console.log('Quickstart Example - See rest of the examples for end-to-end flow');
+
+  // Set up wallet, provider and signer
+  const wallet = ethers.Wallet.createRandom();
+  
+  // Replace it with different JsonRpcProvider to target Ethereum Account, BNB Account, etc
+  // const provider = new ethers.JsonRpcProvider('https://gateway.tenderly.co/public/sepolia');
+  const provider = new ethers.JsonRpcProvider('https://evm.rpc-testnet-donut-node1.push.org/');
+  const signer = wallet.connect(provider);
+
+  // Convert ethers signer to Universal Signer and Initialize Push Chain SDK
+  const universalSigner = await PushChain.utils.signer.toUniversal(signer);
+  const pushChainClient = await PushChain.initialize(universalSigner, {
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
+  });
+
+  try {
+    // Note: This would fail in playground without funds
+    // In production, ensure wallet has funds
+    const txResponse = await pushChainClient.universal.sendTransaction({
+      to: '0x0000000000000000000000000000000000042101',
+      value: BigInt('100000000000000000'), // 0.1 PC in wei
+    });
+    console.log('Transaction Response:', JSON.stringify(txResponse));
+  } catch (error) {
+    console.error('Transaction failed:', error);
+
+    // In playground, this will fail without funds
+    console.log('Note: In playground, this might fail without funds. Ensure your wallet has PC tokens.');
+  }
+}
+
 
 // --- Ethers Example ---
 // ---------------------
@@ -95,7 +134,7 @@ async function ethersV6() {
 }
 
 
-// --- Viem Examples ---
+// --- Viem Example ---
 // ---------------------
 async function viemExample() {
   // Choose chain from which to send transaction
@@ -162,7 +201,7 @@ async function viemExample() {
 }
 
 
-// --- EVM Helper Functions ---
+// --- EVM Helper Function ---
 // ------------------------
 async function returnChainSelection() {
   const chainSelection = await rl.question(`Please select the chain(1 for Push Testnet Donut, 2 for Ethereum Sepolia): `);
@@ -176,7 +215,7 @@ async function returnChainSelection() {
 }
 
 
-// --- Solana Examples ---
+// --- Solana Example ---
 // ---------------------
 async function solanaExample() {
   console.log('\n1. Create Universal Signer');
