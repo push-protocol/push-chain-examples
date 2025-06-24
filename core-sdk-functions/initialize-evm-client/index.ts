@@ -23,7 +23,7 @@ async function main() {
   await getViemTransaction();
 }
 
-await main().catch(console.error);
+main().catch(console.error);
 
 // --- Ethers Examples ---
 
@@ -88,4 +88,3 @@ async function getViemTransaction() {
   console.log('📄 Transaction details:', transaction);
   return transaction;
 }
-
