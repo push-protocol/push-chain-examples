@@ -2,18 +2,23 @@
   "name": "chain-quickstart",
   "version": "1.0.0",
   "description": "Chain quickstart example for Push Chain",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "ts-node index.ts"
   },
   "keywords": [],
   "author": "Push Chain",
   "license": "ISC",
   "dependencies": {
-    "@pushchain/core": "latest",
+    "@pushchain/core": "0.1.24",
     "ethers": "6.14.3",
     "viem": "^2.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.2"
   }
 }
