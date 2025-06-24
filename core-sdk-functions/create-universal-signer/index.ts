@@ -22,7 +22,7 @@ async function main() {
 
   console.log('\n2. Ethereum Account');
   await createUniversalSigner_EthersV6_Ethereum();
-  
+
   console.log('\n🌟 Viem Examples');
   console.log('\n1. Push Chain Account');
   await createUniversalSigner_Viem_PushChain();
@@ -33,7 +33,8 @@ async function main() {
   console.log('\n☀️ Solana Examples');
   await createUniversalSigner_Web3JSSolana();
 }
-await main().catch(console.error);
+
+main().catch(console.error);
 
 // --- Ethers V6 Usage and Examples ---
 // Create Universal Signer - Ethers V6 - Push Chain Account
@@ -108,15 +109,10 @@ async function createUniversalSigner_Web3JSSolana() {
   const solKeypair = Keypair.generate();
 
   // Convert solana signer to Universal Signer
-  const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(
-    solKeypair,
-    {
-      chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
-      library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
-    }
-  );
+  const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(solKeypair, {
+    chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
+    library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
+  });
   console.log('🔑 Got universal signer');
   console.log('📄 Signer details:', JSON.stringify(universalSigner, null, 2));
 }
-  
-
