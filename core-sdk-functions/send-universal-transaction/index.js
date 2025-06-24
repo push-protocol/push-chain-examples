@@ -16,7 +16,7 @@ import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
 // Readline for input
 import * as readline from 'node:readline/promises';
 
-// For input from user
+// Enable User Input
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -40,9 +40,8 @@ await main().catch(console.error);
 // --- Ethers Example ---
 // ---------------------
 async function ethersV6() {
-  // Decide the flow, native transaction or transaction from other chains
-  const chainSelection = await rl.question(`:::prompt:::Please select the chain to send the transaction from (1 for Push Testnet Donut, 2 for Ethereum Sepolia): `);
-  chainSelection !== '1' && chainSelection !== '2' ? console.log('Invalid selection. Please select 1 or 2.') : null;
+  // Choose chain from which to send transaction
+  const chainSelection = await returnChainSelection();
 
   // Set provider based on chain selection
   const PROVIDER = chainSelection === '1' ? 'https://evm.rpc-testnet-donut-node1.push.org/' : 'https://ethereum-sepolia-rpc.publicnode.com';
@@ -59,7 +58,7 @@ async function ethersV6() {
 
   console.log('\n2. Initialize Push Chain Client');
   const pushChainClient = await PushChain.initialize(universalSigner, {
-    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
   console.log('🚀 Got push chain client');
 
@@ -73,7 +72,7 @@ async function ethersV6() {
     // Example: Send 0.001 ETH to a random address
     const txResponse = await pushChainClient.universal.sendTransaction({
       to: '0x0000000000000000000000000000000000042101', // receiver address
-      value: ethers.parseEther('0.001'),
+      value: ethers.parseEther('0.001'), // 0.001 PC
     });
     console.log('📤 Transaction Response:', txResponse);
 
@@ -85,15 +84,13 @@ async function ethersV6() {
       console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
       console.log('1️⃣  You sent SEPOLIA ETH to our Universal Gateway on Sepolia');
       console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-      console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Sepolia wallet');
-      console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
-      console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
+      console.log('3️⃣  Push Chain Validators confirmed the funds and deployed Universal Executor Account(gasslessly), controlled by your Sepolia wallet');
+      console.log('4️⃣  Push Chain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
+      console.log('5️⃣  Your signature was then used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
     }
   } catch (error) {
     console.error('❌ Error:', error.message);
     console.log('💡 Note: This example requires testnet funds to execute');
-  } finally {
-    rl.close();
   }
 }
 
@@ -101,9 +98,8 @@ async function ethersV6() {
 // --- Viem Examples ---
 // ---------------------
 async function viemExample() {
-  // Decide the flow, native transaction or transaction from other chains
-  const chainSelection = await rl.question(`:::prompt:::Please select the chain to send the transaction from (1 for Push Testnet Donut, 2 for Ethereum Sepolia): `);
-  chainSelection !== '1' && chainSelection !== '2' ? console.log('Invalid selection. Please select 1 or 2.') : null;
+  // Choose chain from which to send transaction
+  const chainSelection = await returnChainSelection();
 
   // Set RPC based on chain selection
   const RPC_URL = chainSelection === '1' ? 'https://evm.rpc-testnet-donut-node1.push.org/' : 'https://ethereum-sepolia-rpc.publicnode.com';
@@ -132,12 +128,12 @@ async function viemExample() {
 
   console.log('\n2. Initialize Push Chain Client');
   const pushChainClient = await PushChain.initialize(universalSigner, {
-    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET_DONUT,
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
   console.log('🚀 Got push chain client');
 
   console.log('\n3. Wait for testnet funds to be sent by developer');
-  await rl.question(`:::prompt:::Please send funds to ${wallet.address} on ${chainSelection === '1' ? 'Push Testnet Donut' : 'Ethereum Sepolia'} and Press Enter to continue.`);
+  await rl.question(`:::prompt:::Please send funds to ${account.address} on ${chainSelection === '1' ? 'Push Testnet Donut' : 'Ethereum Sepolia'} and Press Enter to continue.`);
 
   console.log('\n4. Send Universal Transaction');
   try {
@@ -155,14 +151,28 @@ async function viemExample() {
       console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
       console.log('1️⃣  You sent SEPOLIA ETH to our Universal Gateway on Sepolia');
       console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-      console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Sepolia wallet');
-      console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
-      console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
+      console.log('3️⃣  Push Chain Validators confirmed the funds and deployed Universal Executor Account(gasslessly), controlled by your Sepolia wallet');
+      console.log('4️⃣  Push Chain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
+      console.log('5️⃣  Your signature was then used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
     }
   } catch (error) {
     console.error('❌ Error:', error.message);
     console.log('💡 Note: This example requires testnet funds to execute');
   }
+}
+
+
+// --- EVM Helper Functions ---
+// ------------------------
+async function returnChainSelection() {
+  const chainSelection = await rl.question(`Please select the chain(1 for Push Testnet Donut, 2 for Ethereum Sepolia): `);
+
+  if (chainSelection !== '1' && chainSelection !== '2') {
+    console.log('Invalid selection. Please select 1 or 2.');
+    process.exit(0);
+  }
+
+  return chainSelection;
 }
 
 
@@ -174,7 +184,6 @@ async function solanaExample() {
   console.log('🔑 Got keypair: ', keypair.publicKey.toBase58());
 
   // Create connection
-  const connection = new Connection('https://api.devnet.solana.com', 'confirmed');
   const universalSigner = await PushChain.utils.signer.toUniversalFromKeypair(keypair, {
     chain: PushChain.CONSTANTS.CHAIN.SOLANA_DEVNET,
     library: PushChain.CONSTANTS.LIBRARY.SOLANA_WEB3JS,
@@ -184,17 +193,12 @@ async function solanaExample() {
 
   console.log('\n2. Initialize Push Chain Client');
   const pushChainClient = await PushChain.initialize(universalSigner, {
-    network: PushChain.CONSTANTS.PUSH_NETWORK.SOLANA_DEVNET,
+    network: PushChain.CONSTANTS.PUSH_NETWORK.TESTNET,
   });
   console.log('🚀 Got push chain client');
 
   console.log('\n3. Wait for testnet funds to be sent by developer');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  const answer = await rl.question(`:::prompt:::Please send funds to ${keypair.publicKey.toBase58()} and Press Enter to continue.`);
-  rl.close();
+  await rl.question(`:::prompt:::Please send funds to ${keypair.publicKey.toBase58()} and Press Enter to continue.`);
 
   console.log('\n4. Send Universal Transaction');
   try {
@@ -211,9 +215,9 @@ async function solanaExample() {
     console.log('🎉 Congrats! You just sent a universal transaction! Here is what happened:');
     console.log('1️⃣  You sent DEVNET SOLANA to our Universal Gateway on Solana Devnet');
     console.log('2️⃣  Our Universal Gateway locked the funds, converted them to USD stablecoin');
-    console.log('3️⃣  Push Chain Validators confirms the funds and deploys Universal Executor Account(gasslessly) controlled by your Solana wallet');
-    console.log('4️⃣  Push CHain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
-    console.log('5️⃣  Your signature was used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
+    console.log('3️⃣  Push Chain Validators confirmed the funds and deployed Universal Executor Account(gasslessly), controlled by your Solana wallet');
+    console.log('4️⃣  Push Chain Validators then minted equivalent amount of $PC through internal AMM on Push Chain');
+    console.log('5️⃣  Your signature was then used to verify and complete your transaction on Push Chain and gas was paid in $PC from your UEA');
   } catch (error) {
     console.error('❌ Error:', error.message);
     console.log('💡 Note: This example requires testnet funds to execute');
