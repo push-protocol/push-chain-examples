@@ -7,7 +7,7 @@
     "start": "ts-node index.ts"
   },
   "dependencies": {
-    "@pushchain/core": "0.1.24",
+    "@pushchain/core": "0.1.30",
     "@solana/web3.js": "^1.91.1",
     "ethers": "^6.14.4",
     "viem": "^2.31.3"

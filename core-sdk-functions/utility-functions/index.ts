@@ -55,11 +55,11 @@ async function convertOriginToExecutor() {
   });
 
   const executorInfo = await PushChain.utils.account.convertOriginToExecutor(account, {
-    status: true,
+    onlyCompute: true,
   });
 
   const executorSimple = await PushChain.utils.account.convertOriginToExecutor(account, {
-    status: false,
+    onlyCompute: false,
   });
 
   return { executorInfo, executorSimple };
