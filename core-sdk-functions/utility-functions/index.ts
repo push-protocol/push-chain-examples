@@ -266,7 +266,7 @@ async function encodeTxData() {
   ];
 
   // Encode transaction data for the increment function
-  const result = PushChain.utils.helpers.encodeTxData(testAbi, 'increment');
+  const result = PushChain.utils.helpers.encodeTxData({ abi: testAbi, functionName: 'increment' });
 
   return result;
 }
