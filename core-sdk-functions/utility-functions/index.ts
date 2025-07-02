@@ -43,6 +43,10 @@ async function main() {
   console.log('\n🏃 Trying to call PushChain.utils.helpers.getChainName');
   const chainNameFromIdResult = await getChainName();
   console.log('✅ Success:', chainNameFromIdResult);
+
+  console.log('\n🏃 Trying to call PushChain.utils.helpers.encodeTxData');
+  const encodeTxDataResult = await encodeTxData();
+  console.log('✅ Success:', encodeTxDataResult);
 }
 
 main().catch(console.error);
@@ -151,4 +155,118 @@ async function getChainName() {
   // ETHEREUM_SEPOLIA
   const chainName = PushChain.utils.helpers.getChainName('eip155:11155111');
   return chainName;
+}
+
+// PushChain.utils.helpers.encodeTxData(txData: string)
+async function encodeTxData() {
+  // Example ABI for a simple counter contract
+  const testAbi = [
+    {
+      inputs: [],
+      stateMutability: 'nonpayable',
+      type: 'constructor',
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'newCount',
+          type: 'uint256',
+        },
+        {
+          indexed: true,
+          internalType: 'address',
+          name: 'caller',
+          type: 'address',
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: 'chainNamespace',
+          type: 'string',
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: 'chainId',
+          type: 'string',
+        },
+      ],
+      name: 'CountIncremented',
+      type: 'event',
+    },
+    {
+      inputs: [],
+      name: 'increment',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'reset',
+      outputs: [],
+      stateMutability: 'nonpayable',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'countEth',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'countPC',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'countSol',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [],
+      name: 'getCount',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256',
+        },
+      ],
+      stateMutability: 'view',
+      type: 'function',
+    },
+  ];
+
+  // Encode transaction data for the increment function
+  const result = PushChain.utils.helpers.encodeTxData(testAbi, 'increment');
+
+  return result;
 }
