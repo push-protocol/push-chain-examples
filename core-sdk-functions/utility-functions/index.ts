@@ -47,6 +47,10 @@ async function main() {
   console.log('\n🏃 Trying to call PushChain.utils.helpers.encodeTxData');
   const encodeTxDataResult = await encodeTxData();
   console.log('✅ Success:', encodeTxDataResult);
+
+  console.log('\n🏃 Trying to call parseUnits');
+  const parseUnitsResult = await parseUnits();
+  console.log('✅ Success:', parseUnitsResult);
 }
 
 main().catch(console.error);
@@ -269,4 +273,15 @@ async function encodeTxData() {
   const result = PushChain.utils.helpers.encodeTxData({ abi: testAbi, functionName: 'increment' });
 
   return result;
+}
+// Test function for parseUnits
+async function parseUnits() {
+  const results = {
+    integerValue: PushChain.utils.helpers.parseUnits('420', 9),
+    decimalValue1: PushChain.utils.helpers.parseUnits('1.5', 18),
+    decimalValue2: PushChain.utils.helpers.parseUnits('0.1', 6),
+    decimalValue3: PushChain.utils.helpers.parseUnits('1.23', 6),
+  };
+
+  return results;
 }
