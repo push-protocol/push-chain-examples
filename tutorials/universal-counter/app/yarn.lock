@@ -1334,9 +1334,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pushchain/ui-kit@npm:^1.1.10":
-  version: 1.1.10
-  resolution: "@pushchain/ui-kit@npm:1.1.10"
+"@pushchain/ui-kit@npm:^1.1.11":
+  version: 1.1.12
+  resolution: "@pushchain/ui-kit@npm:1.1.12"
   dependencies:
     "@coral-xyz/anchor": "npm:^0.31.1"
     "@metamask/sdk": "npm:^0.32.0"
@@ -1350,7 +1350,7 @@ __metadata:
     styled-components: "npm:^6.1.19"
     tslib: "npm:^2.3.0"
     viem: "npm:^2.23.9"
-  checksum: 10c0/cc3e7249084ba11d8b603b84cd26f288b939905dcb9282e0bb21a67154ace9b76493cb1a1a04e49073b1720a64ca5ccf55e36a7c85bf48522ac12290a6a55c9f
+  checksum: 10c0/6506a15b6dcceab6386dc0774d676516fe71f1890af751c06731afe7225243ea0813803aaf769c25320701480db24f751818ff8e2eb127fc185f2e7a43908cbb
   languageName: node
   linkType: hard
 
@@ -2100,7 +2100,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^4.4.1":
+"@vitejs/plugin-react@npm:^4.6.0":
   version: 4.6.0
   resolution: "@vitejs/plugin-react@npm:4.6.0"
   dependencies:
@@ -5792,7 +5792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.34.9":
+"rollup@npm:^4.40.0":
   version: 4.44.2
   resolution: "rollup@npm:4.44.2"
   dependencies:
@@ -6515,10 +6515,14 @@ __metadata:
   resolution: "universal-counter-app@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.25.0"
-    "@pushchain/ui-kit": "npm:^1.1.10"
-    "@types/react": "npm:^19.1.2"
-    "@types/react-dom": "npm:^19.1.2"
-    "@vitejs/plugin-react": "npm:^4.4.1"
+    "@pushchain/core": "npm:^0.1.38"
+    "@pushchain/ui-kit": "npm:^1.1.11"
+    "@types/gh-pages": "npm:^6"
+    "@types/matter-js": "npm:^0.19.8"
+    "@types/node": "npm:^24.0.10"
+    "@types/react": "npm:19"
+    "@types/react-dom": "npm:19"
+    "@vitejs/plugin-react": "npm:^4.6.0"
     buffer: "npm:^6.0.3"
     eslint: "npm:^9.25.0"
     eslint-plugin-react-hooks: "npm:^5.2.0"
