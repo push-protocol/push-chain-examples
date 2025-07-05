@@ -47,6 +47,6 @@ If you're new to PushChain development, we recommend following these tutorials i
 
 For more information about PushChain development:
 
-- [PushChain Documentation](https://docs.pushchain.xyz)
+- [PushChain Documentation](https://push.org/docs)
 - [PushChain GitHub](https://github.com/pushchain)
 - [PushChain Community Discord](https://discord.gg/pushchain)

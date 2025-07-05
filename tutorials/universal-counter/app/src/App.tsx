@@ -144,7 +144,7 @@ const App: React.FC = () => {
         await tx.wait();
 
         // Refresh counter values
-        await fetchCounters();
+        // await fetchCounters();
 
         // Add a single Push Chain colored ball for immediate visual feedback
         // The fetchCounters will handle adding any additional balls needed
@@ -164,11 +164,20 @@ const App: React.FC = () => {
 
   // This function has been merged with handleIncrement
 
+  // Create a ref to track if initial fetch has been done
+  const initialFetchDoneRef = useRef(false);
+  // Create a ref to track the last fetch timestamp to debounce multiple calls
+  const lastFetchTimeRef = useRef(0);
+  // Minimum time between fetches in milliseconds
+  const FETCH_DEBOUNCE_MS = 1000;
+
   // Set up WebSocket connection for real-time updates
   useEffect(() => {
     // Initial fetch when component mounts
     console.log("Component mounted, fetching initial counter values...");
     fetchCounters();
+    initialFetchDoneRef.current = true;
+    lastFetchTimeRef.current = Date.now();
 
     // Create WebSocket connection
     const wsUrl = "wss://evm.ws-testnet-donut-node1.push.org/";
@@ -207,10 +216,16 @@ const App: React.FC = () => {
           
           console.log(`Blockchain ID from event: ${blockchainId}`);
           
-          // Refresh counters to update the UI and drop balls
-          // The fetchCounters function will handle adding the appropriate balls
-          // based on the counter changes
-          fetchCounters();
+          // Check if enough time has passed since the last fetch
+          const now = Date.now();
+          if (now - lastFetchTimeRef.current > FETCH_DEBOUNCE_MS) {
+            console.log("Debounce time passed, fetching counters...");
+            // Refresh counters to update the UI and drop balls
+            fetchCounters();
+            lastFetchTimeRef.current = now;
+          } else {
+            console.log("Skipping fetchCounters due to debounce");
+          }
         }
       } catch (err) {
         console.error("Error processing WebSocket message:", err);
