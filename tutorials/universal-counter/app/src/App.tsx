@@ -173,11 +173,15 @@ const App: React.FC = () => {
 
   // Set up WebSocket connection for real-time updates
   useEffect(() => {
-    // Initial fetch when component mounts
-    console.log("Component mounted, fetching initial counter values...");
-    fetchCounters();
-    initialFetchDoneRef.current = true;
-    lastFetchTimeRef.current = Date.now();
+    // Only fetch counters on the initial mount, not when dependencies change
+    if (!initialFetchDoneRef.current) {
+      console.log("Component mounted, fetching initial counter values...");
+      fetchCounters();
+      initialFetchDoneRef.current = true;
+      lastFetchTimeRef.current = Date.now();
+    } else {
+      console.log("Skipping initial fetch as it was already done");
+    }
 
     // Create WebSocket connection
     const wsUrl = "wss://evm.ws-testnet-donut-node1.push.org/";
