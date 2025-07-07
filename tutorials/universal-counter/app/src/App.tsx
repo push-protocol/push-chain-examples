@@ -16,10 +16,8 @@ import {
   PushUniversalAccountButton,
   usePushChainClient,
   usePushWalletContext,
+  usePushChain,
 } from "@pushchain/ui-kit";
-
-// Import PushChain
-import { PushChain } from "@pushchain/core";
 
 // Import Ethers
 import { ethers } from "ethers";
@@ -45,6 +43,7 @@ const App: React.FC = () => {
   // Get PushChain context and client
   const { connectionStatus } = usePushWalletContext();
   const { pushChainClient } = usePushChainClient();
+  const { PushChain } = usePushChain();
 
   // Create refs for elements that will interact with Matter.js physics
   const headingRef = useRef<HTMLHeadingElement>(null);

@@ -1334,9 +1334,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pushchain/ui-kit@npm:^1.1.11":
-  version: 1.1.12
-  resolution: "@pushchain/ui-kit@npm:1.1.12"
+"@pushchain/ui-kit@npm:^1.1.14":
+  version: 1.1.14
+  resolution: "@pushchain/ui-kit@npm:1.1.14"
   dependencies:
     "@coral-xyz/anchor": "npm:^0.31.1"
     "@metamask/sdk": "npm:^0.32.0"
@@ -1350,7 +1350,7 @@ __metadata:
     styled-components: "npm:^6.1.19"
     tslib: "npm:^2.3.0"
     viem: "npm:^2.23.9"
-  checksum: 10c0/6506a15b6dcceab6386dc0774d676516fe71f1890af751c06731afe7225243ea0813803aaf769c25320701480db24f751818ff8e2eb127fc185f2e7a43908cbb
+  checksum: 10c0/40d1936ded14ab97d3d130c04cc64dd846e9115a900f8698a7d7f5a8ff0c629b70af8e2ec216fd688e99817a04da1908d30c889d03b227b37a3c71183d770f07
   languageName: node
   linkType: hard
 
@@ -6516,7 +6516,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.25.0"
     "@pushchain/core": "npm:^0.1.38"
-    "@pushchain/ui-kit": "npm:^1.1.11"
+    "@pushchain/ui-kit": "npm:^1.1.14"
     "@types/gh-pages": "npm:^6"
     "@types/matter-js": "npm:^0.19.8"
     "@types/node": "npm:^24.0.10"
