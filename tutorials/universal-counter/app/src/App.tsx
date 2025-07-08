@@ -135,6 +135,7 @@ const App: React.FC = () => {
         const tx = await pushChainClient.universal.sendTransaction({
           to: CONTRACT_ADDRESS,
           data: getTxData(),
+          value: BigInt(0),
         });
 
         setTxHash(tx.hash);
