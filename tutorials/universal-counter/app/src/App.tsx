@@ -342,17 +342,17 @@ const App: React.FC = () => {
             >
               {countEth > countSol && countEth > countPC ? (
                 <>
-                  🎉 Ethereum Users are Winnig! 🚀{" "}
+                  🎉 Ethereum Users are Winning! 🚀{" "}
                   <span style={{ fontSize: "1.8rem" }}>🏆</span>
                 </>
               ) : countSol > countEth && countSol > countPC ? (
                 <>
-                  ✨ Solana Users areWinnig! 🌟{" "}
+                  ✨ Solana Users areWinning! 🌟{" "}
                   <span style={{ fontSize: "1.8rem" }}>🏆</span>
                 </>
               ) : (
                 <>
-                  🔥 Push Chain Users are Winnig! 💪{" "}
+                  🔥 Push Chain Users are Winning! 💪{" "}
                   <span style={{ fontSize: "1.8rem" }}>🏆</span>
                 </>
               )}
