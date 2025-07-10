@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
 import { Keypair } from '@solana/web3.js';
 
 // Import viem
-import { createWalletClient, defineChain, http } from 'viem';
+import { createWalletClient, http } from 'viem';
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts';
 
 // Readline for input
@@ -24,11 +24,11 @@ const rl = readline.createInterface({
 
 // ⭐️ MAIN FUNCTION ⭐️
 async function main() {
-  console.log('\n🏃‍♂️ Quickstart Example');
-  await quickstartExample();
+  // console.log('\n🏃‍♂️ Quickstart Example');
+  // await quickstartExample();
 
-  console.log('\n⚡ Ethers v6 Example - PUSH Chain');
-  await ethersV6();
+  // console.log('\n⚡ Ethers v6 Example - PUSH Chain');
+  // await ethersV6();
 
   console.log('\n🌟 Viem Example - PUSH Chain');
   await viemExample();
@@ -161,33 +161,10 @@ async function viemExample() {
   const account = privateKeyToAccount(privateKey);
   console.log('🔑 Got account: ', account.address);
 
-  // Define Push Testnet chain configuration for Viem
-  const pushTestnet = defineChain({
-    id: 42101,
-    name: 'Push Testnet',
-    nativeCurrency: {
-      decimals: 18,
-      name: 'PC',
-      symbol: '$PC',
-    },
-    rpcUrls: {
-      default: {
-        http: ['https://evm.rpc-testnet-donut-node1.push.org/', 'https://evm.rpc-testnet-donut-node2.push.org/'],
-      },
-    },
-    blockExplorers: {
-      default: {
-        name: 'Push Testnet Explorer',
-        url: 'https://explorer.testnet.push.org/',
-      },
-    },
-  });
-
   // create viem client
   const client = createWalletClient({
     account,
-    chain: pushTestnet,
-    transport: http(),
+    transport: http(RPC_URL),
   });
   const universalSigner = await PushChain.utils.signer.toUniversal(client);
   console.log('🔑 Got universal signer');
