@@ -83,7 +83,7 @@ main().catch(console.error);
 // 1. Fetch transaction by hash
 async function getTransactionByHash() {
   console.log('\n1️⃣ Fetching transaction by hash...');
-  const txHash = '0xa7839fb1e3483eab628cbf18f42603ba192cef99b724d4b651eb7c4e9683b79e';
+  const txHash = '0x9405d6d75fe331d17ca53e7076a784b70c030c74a00e72ceff6a3e88356828f5';
 
   // Ethers implementation
   const ethersTransaction = await provider.getTransaction(txHash);
